@@ -1,26 +1,116 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-page: #0d1117;
+  --bg-surface: #161b22;
+  --bg-surface-2: #1c2128;
+  --border: #30363d;
+  --accent: #00c4b0;
+  --accent-dim: rgba(0, 196, 176, 0.15);
+  --text-primary: #e6edf3;
+  --text-muted: #8b949e;
+
+  --method-get-bg: #1f4d2a;
+  --method-get-text: #3fb950;
+  --method-post-bg: #1c2d4a;
+  --method-post-text: #58a6ff;
+  --method-delete-bg: #4a1c1c;
+  --method-delete-text: #ff7b72;
+  --method-patch-bg: #3d2b1a;
+  --method-patch-text: #e3b341;
+  --method-put-bg: #3d2b1a;
+  --method-put-text: #e3b341;
+
+  --json-key: #79c0ff;
+  --json-string: #a5d6ff;
+  --json-number: #f2cc60;
+  --json-boolean: #ff7b72;
+  --json-null: #8b949e;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html,
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: "JetBrains Mono", monospace;
+  height: 100%;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+::selection {
+  background: var(--accent-dim);
+  color: var(--text-primary);
+}
+
+.blinking-cursor::after {
+  content: "▋";
+  color: var(--accent);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-surface) 25%,
+    var(--bg-surface-2) 50%,
+    var(--bg-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
 }
