@@ -53,7 +53,7 @@ export default function ResponsePanel({ response, loading }: ResponsePanelProps)
         style={{ background: "var(--bg-surface)", color: "var(--text-muted)" }}
       >
         <div className="text-center">
-          <div className="text-3xl mb-3 opacity-20">{ }</div>
+          <div className="text-3xl mb-3 opacity-20">{"{ }"}</div>
           <div className="text-sm">Response will appear here</div>
           <div className="text-xs mt-1 opacity-60">Run a request to see the output</div>
         </div>

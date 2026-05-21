@@ -53,10 +53,10 @@ Please explain this response.`;
       model: anthropic("claude-sonnet-4-20250514"),
       system: SYSTEM_PROMPT,
       messages,
-      maxTokens: 600,
+      maxOutputTokens: 600,
     });
 
-    return result.toDataStreamResponse();
+    return result.toTextStreamResponse();
   } catch (err) {
     const message = err instanceof Error ? err.message : "Explain error";
     return new Response(JSON.stringify({ error: message }), {
